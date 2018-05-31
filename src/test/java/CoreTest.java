@@ -3,17 +3,20 @@ import static com.ouiscnf.gremlins.kata.losange.domain.Alphabet.B;
 import static com.ouiscnf.gremlins.kata.losange.domain.Alphabet.C;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.ouiscnf.gremlins.kata.losange.domain.Sequence;
+import com.ouiscnf.gremlins.kata.losange.domain.Core;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import org.junit.Test;
 
-public class SequenceTest {
+public class CoreTest {
 
   @Test
   public void should_display_A_when_input_A(){
     //Given
-    Sequence sequence = new Sequence(A);
+    Core core = new Core(A);
     //When
-    String strSequence = sequence.getSequence();
+    String strSequence = core.buildDisplay();
     //Then
     assertThat(strSequence).isEqualTo("A");
   }
@@ -21,9 +24,9 @@ public class SequenceTest {
   @Test
   public void should_display_sequence_B_B_when_input_B(){
     //Given
-    Sequence sequence = new Sequence(B);
+    Core core = new Core(B);
     //When
-    String strSequence = sequence.getSequence();
+    String strSequence = core.buildDisplay();
     //Then
     assertThat(strSequence).isEqualTo("B B");
   }
@@ -31,9 +34,9 @@ public class SequenceTest {
   @Test
   public void should_display_sequence_C___C_when_input_C(){
     //Given
-    Sequence sequence = new Sequence(C);
+    Core core = new Core(C);
     //When
-    String strSequence = sequence.getSequence();
+    String strSequence = core.buildDisplay();
     //Then
     assertThat(strSequence).isEqualTo("C   C");
   }

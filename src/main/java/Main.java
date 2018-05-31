@@ -24,7 +24,7 @@ public class Main {
     
     input.stream()
       .map(Diamond::new)
-      .flatMap(diamond -> diamond.buildDiamondLines().stream())
+      .flatMap(diamond -> diamond.buildDiamondDisplay().stream())
       .forEach(System.out::println);
 
   }

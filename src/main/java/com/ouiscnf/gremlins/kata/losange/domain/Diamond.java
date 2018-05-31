@@ -1,7 +1,10 @@
 package com.ouiscnf.gremlins.kata.losange.domain;
 
+import static java.util.stream.IntStream.rangeClosed;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Diamond {
 
@@ -11,39 +14,41 @@ public class Diamond {
     this.inputLetter = inputLetter;
   }
 
-  public List<String> buildDiamondLines() {
+  public List<String> buildDiamondDisplay() {
 
     List<String> diamondLines = new ArrayList<>();
-    int letterPosition = this.inputLetter.getPosition();
+    int inputLetterPosition = this.inputLetter.getPosition();
 
-    for (int i = 1; i <= letterPosition; i++) {
-      String spaceBetweenSequence = transform(letterPosition - i);
+    //On construit le haut du losange
+    for (int letterPosition = 1; letterPosition < inputLetterPosition; letterPosition++) {
 
-      Sequence sequence = new Sequence(Alphabet.valueOf(i));
-
-      String diamondLine = spaceBetweenSequence + sequence.getSequence() + spaceBetweenSequence;
-
-      diamondLines.add(diamondLine);
+      diamondLines.add(buildDiamondLine(inputLetterPosition, letterPosition));
+      
     }
 
-    for (int i = letterPosition - 1; i >= 1; i--) {
-      String spaceBetweenSequence = transform(letterPosition - i);
+    //On construit la ligne du milieu
+    diamondLines.add(buildDiamondLine(inputLetterPosition, inputLetterPosition));
 
-      Sequence sequence = new Sequence(Alphabet.valueOf(i));
+    //On construit le bas du losange
+    for (int letterPosition = inputLetterPosition - 1; letterPosition >= 1; letterPosition--) {
 
-      String diamondLine = spaceBetweenSequence + sequence.getSequence() + spaceBetweenSequence;
+      diamondLines.add(buildDiamondLine(inputLetterPosition, letterPosition));
 
-      diamondLines.add(diamondLine);
     }
 
     return diamondLines;
   }
 
-  private String transform(Integer integer) {
-    StringBuilder sb = new StringBuilder();
-    for (Integer i = 0; i < integer; i++) {
-      sb.append(' ');
-    }
-    return sb.toString();
+  private String buildDiamondLine(int inputLetterPosition, int letterPosition) {
+    String spaceBetweenCore = mapToStrSpace(inputLetterPosition - letterPosition);
+    Core core = new Core(Alphabet.valueOf(letterPosition));
+    return spaceBetweenCore + core.buildDisplay() + spaceBetweenCore;
+  }
+
+  private String mapToStrSpace(Integer integer) {
+    return rangeClosed(1, integer)
+      .boxed()
+      .map(n -> " ")
+      .collect(Collectors.joining());
   }
 }

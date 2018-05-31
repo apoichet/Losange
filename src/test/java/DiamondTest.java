@@ -15,7 +15,7 @@ public class DiamondTest {
     //Given
     Diamond diamond = new Diamond(A);
     //When
-    List<String> sequences = diamond.buildDiamondLines();
+    List<String> sequences = diamond.buildDiamondDisplay();
     //Then
     assertThat(sequences).containsExactly("A");
   }
@@ -25,7 +25,7 @@ public class DiamondTest {
     //Given
     Diamond diamond = new Diamond(B);
     //When
-    List<String> sequences = diamond.buildDiamondLines();
+    List<String> sequences = diamond.buildDiamondDisplay();
     //Then
     assertThat(sequences).containsExactly(" A ","B B"," A ");
   }
@@ -35,7 +35,7 @@ public class DiamondTest {
     //Given
     Diamond diamond = new Diamond(C);
     //When
-    List<String> sequences = diamond.buildDiamondLines();
+    List<String> sequences = diamond.buildDiamondDisplay();
     //Then
     assertThat(sequences).containsExactly("  A  "," B B ","C   C"," B B ","  A  ");
   }
@@ -45,7 +45,7 @@ public class DiamondTest {
     //Given
     Diamond diamond = new Diamond(D);
     //When
-    List<String> sequences = diamond.buildDiamondLines();
+    List<String> sequences = diamond.buildDiamondDisplay();
     //Then
     assertThat(sequences).containsExactly("   A   ","  B B  "," C   C ","D     D"," C   C ","  B B  ","   A   ");
   }
