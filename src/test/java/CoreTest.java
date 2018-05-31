@@ -4,9 +4,6 @@ import static com.ouiscnf.gremlins.kata.losange.domain.Alphabet.C;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.ouiscnf.gremlins.kata.losange.domain.Core;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import org.junit.Test;
 
 public class CoreTest {
